@@ -20,8 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var fragmentsManager : FragmentManager
     lateinit var productsDataImpl: ProductsDataImpl
+
     private val mainPageViewModel: MainPageViewModel by viewModels()
     private val productsViewModel : ProductsViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)

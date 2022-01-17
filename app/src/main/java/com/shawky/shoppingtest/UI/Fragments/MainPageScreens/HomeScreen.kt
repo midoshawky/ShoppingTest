@@ -25,7 +25,7 @@ class HomeScreen : Fragment(R.layout.fragment_home_screen) {
 
     private var binding : FragmentHomeScreenBinding ?=null
     lateinit var productAdapter : ProductRVAdapter
-    private var productsList : List<ProductModel> = emptyList()
+    private var productsList : MutableList<ProductModel> = listOf<ProductModel>().toMutableList()
     private val model: ProductsViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,10 +34,8 @@ class HomeScreen : Fragment(R.layout.fragment_home_screen) {
 
         productAdapter = ProductRVAdapter(productsList,
             { productModel , image ->
-                val action = HomeScreenDirections.actionHomeScreenToProductInfoScreen()
-                findNavController().navigate(action,
-                    FragmentNavigator.Extras.Builder()
-                    .addSharedElements(mapOf(image to image.transitionName)).build())
+
+
             }) {product ->
             Log.i("Order","Product : ${product.id}")
             model.addItemsToCart(product)
@@ -49,7 +47,7 @@ class HomeScreen : Fragment(R.layout.fragment_home_screen) {
 
         model.products.observe(requireActivity()){ products ->
             binding!!.progressBar.visibility = View.GONE
-            productsList = products
+            productsList.addAll(products)
             Log.i("Products" , "products here : $productsList")
             productAdapter.notifyDataSetChanged()
         }
