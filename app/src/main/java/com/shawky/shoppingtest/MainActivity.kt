@@ -2,6 +2,9 @@ package com.shawky.shoppingtest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentManager
 import androidx.hilt.lifecycle.ViewModelInject
@@ -25,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     private val productsViewModel : ProductsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        mainPageViewModel.changeTheme(this)
+
+
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
@@ -34,8 +40,16 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.navigation.setOnItemSelectedListener { item ->
-            mainPageViewModel.navigateFragment(item.itemId,binding.fragmentContainerView.id,fragmentsManager)
-            return@setOnItemSelectedListener true
+            if(item.itemId == R.id.home && mainPageViewModel.theme.value == R.style.Theme_ShoppingTestThemeOne){
+                mainPageViewModel.theme.value = R.style.Theme_ShoppingTestThemeTwo
+                recreate()
+                return@setOnItemSelectedListener true
+            }else{
+                mainPageViewModel.navigateFragment(item.itemId,binding.fragmentContainerView.id,fragmentsManager)
+
+            }
+
+
         }
 
         binding.cartViewModel = productsViewModel

@@ -76,7 +76,7 @@
                         android:layout_gravity="center|center_vertical"
                         android:layout_marginStart="20dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/watermilon_red_var"
+                        app:cardBackgroundColor="?colorPrimary"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="7dp">
 

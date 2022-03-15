@@ -1,5 +1,7 @@
 package com.shawky.shoppingtest.viewModels
 
+import android.content.Context
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
@@ -18,6 +20,12 @@ class MainPageViewModel : ViewModel() {
     private val  personScreen = PersonScreen()
 
     private var activeFragment = MutableLiveData<Int>()
+
+    val theme : MutableLiveData<Int> = MutableLiveData(R.style.Theme_ShoppingTestThemeOne)
+
+    fun changeTheme(context: Context){
+        context.setTheme(theme.value!!)
+    }
 
     fun navigateFragment(itemId : Int , mainView : Int ,fragmentManager: FragmentManager) : Boolean{
         activeFragment.value = itemId
