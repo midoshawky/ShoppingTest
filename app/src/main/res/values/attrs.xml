@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomStyle">
+        <attr name="customPrimaryColor" format="color" />
+        <attr name="customSecondaryColor" format="color" />
+    </declare-styleable>
+</resources>

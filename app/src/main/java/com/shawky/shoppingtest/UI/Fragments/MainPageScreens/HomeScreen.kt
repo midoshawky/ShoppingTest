@@ -11,6 +11,7 @@ import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.shawky.shoppingtest.MainActivity
 import com.shawky.shoppingtest.Models.ProductModel
 import com.shawky.shoppingtest.R
 import com.shawky.shoppingtest.UI.Adapters.ProductRVAdapter
@@ -35,10 +36,10 @@ class HomeScreen : Fragment(R.layout.fragment_home_screen) {
         productAdapter = ProductRVAdapter(productsList,
             { productModel , image ->
 
-
             }) {product ->
             Log.i("Order","Product : ${product.id}")
             model.addItemsToCart(product)
+            (requireActivity() as MainActivity).changeTheme()
         }
 
         binding!!.productsRv.adapter = productAdapter

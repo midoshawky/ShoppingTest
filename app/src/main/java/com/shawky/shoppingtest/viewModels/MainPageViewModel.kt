@@ -41,4 +41,7 @@ class MainPageViewModel : ViewModel() {
         return true
     }
 
+    fun createNewTheme(context: Context){
+
+    }
 }
